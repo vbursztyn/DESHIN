@@ -2,7 +2,7 @@
 *Said "dishing" _("serving food or [slang] gossiping", Merriam-Webster)._
 
 > Authors:
->> Raul Sena, Victor Bursztyn and Igor Canalli. - {<email_Raul>,vbursztyn,<email_Ygor>}@cos.ufrj.br
+>> Raul Sena, Victor Bursztyn and Igor Canalli. - {raulsf,vbursztyn,<email_Ygor>}@cos.ufrj.br
 
 #1. Requirements:
 * Virtualenv - After installing it:
