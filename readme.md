@@ -1,11 +1,10 @@
 # DESHIN: Dynamic and Extractive Summarizer toward Human Interests on News #
+*Said "dishing" _("serving food or [slang] gossiping", Merriam-Webster)._
 
-*Said "dishing" ("serving food or [slang] gossiping" -- Merriam-Webster).
-
-> AUTHORS:
+> Authors:
 >> Raul Sena, Victor Bursztyn and Igor Canalli. - {<email_Raul>,vbursztyn,<email_Ygor>}@cos.ufrj.br
 
-#1. REQUIREMENTS:
+#1. Requirements:
 * Virtualenv - After installing it:
  * virtualenv venv
   * . venv/bin/activate
