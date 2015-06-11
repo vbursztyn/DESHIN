@@ -1,0 +1,17 @@
+;	This textfile maps several articles to specific collections.
+;	It's meant to be used to isolate different types of articles.
+;	This way, we may let DESHIN discover the best approach for each type.
+;	And finally, we can evaluate how much those approaches differ.
+
+type1	C12_Mundo_EnchenteCoreia
+type1	C32_Mundo_FalhaNuclear
+
+type2	C20_Politica_CPMF
+type2	C2_Politica_ReeleicaoLula
+type2	C16_Politica_Sanguessugas
+type2	C11_Cotidiano_PCC
+
+type3	C27_Esportes_GoleadaEquador
+type3	C28_Esportes_HeptaVolei
+type3	C8_Esportes_LigaVolei
+type3	C24_Esportes_FabianaMue
