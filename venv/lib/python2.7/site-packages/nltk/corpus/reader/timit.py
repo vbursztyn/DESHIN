@@ -2,9 +2,9 @@
 #
 # Copyright (C) 2001-2007 NLTK Project
 # Author: Haejoong Lee <haejoong@ldc.upenn.edu>
-#         Steven Bird <sb@ldc.upenn.edu>
+#         Steven Bird <stevenbird1@gmail.com>
 #         Jacob Perkins <japerk@gmail.com>
-# URL: <http://www.nltk.org/>
+# URL: <http://nltk.org/>
 # For license information, see LICENSE.TXT
 
 # [xx] this docstring is out-of-date:
@@ -118,6 +118,7 @@ The 4 functions are as follows.
    timit.audiodata function.
 
 """
+from __future__ import print_function, unicode_literals
 
 import sys
 import os
@@ -125,11 +126,12 @@ import re
 import tempfile
 import time
 
+from nltk import compat
 from nltk.tree import Tree
 from nltk.internals import import_from_stdlib
 
-from util import *
-from api import *
+from nltk.corpus.reader.util import *
+from nltk.corpus.reader.api import *
 
 class TimitCorpusReader(CorpusReader):
     """
@@ -154,13 +156,13 @@ class TimitCorpusReader(CorpusReader):
     """A regexp matching fileids that are used by this corpus reader."""
     _UTTERANCE_RE = r'\w+-\w+/\w+\.txt'
 
-    def __init__(self, root, encoding=None):
+    def __init__(self, root, encoding='utf8'):
         """
         Construct a new TIMIT corpus reader in the given directory.
         :param root: The root directory for this corpus.
         """
         # Ensure that wave files don't get treated as unicode data:
-        if isinstance(encoding, basestring):
+        if isinstance(encoding, compat.string_types):
             encoding = [('.*\.wav', None), ('.*', encoding)]
 
         CorpusReader.__init__(self, root,
@@ -203,11 +205,11 @@ class TimitCorpusReader(CorpusReader):
         region, gender, sentence type, or sentence number, if
         specified.
         """
-        if isinstance(dialect, basestring): dialect = [dialect]
-        if isinstance(sex, basestring): sex = [sex]
-        if isinstance(spkrid, basestring): spkrid = [spkrid]
-        if isinstance(sent_type, basestring): sent_type = [sent_type]
-        if isinstance(sentid, basestring): sentid = [sentid]
+        if isinstance(dialect, compat.string_types): dialect = [dialect]
+        if isinstance(sex, compat.string_types): sex = [sex]
+        if isinstance(spkrid, compat.string_types): spkrid = [spkrid]
+        if isinstance(sent_type, compat.string_types): sent_type = [sent_type]
+        if isinstance(sentid, compat.string_types): sentid = [sentid]
 
         utterances = self._utterances[:]
         if dialect is not None:
@@ -305,7 +307,7 @@ class TimitCorpusReader(CorpusReader):
 
     def phone_trees(self, utterances=None):
         if utterances is None: utterances = self._utterances
-        if isinstance(utterances, basestring): utterances = [utterances]
+        if isinstance(utterances, compat.string_types): utterances = [utterances]
 
         trees = []
         for utterance in utterances:
@@ -370,7 +372,7 @@ class TimitCorpusReader(CorpusReader):
 
     def _utterance_fileids(self, utterances, extension):
         if utterances is None: utterances = self._utterances
-        if isinstance(utterances, basestring): utterances = [utterances]
+        if isinstance(utterances, compat.string_types): utterances = [utterances]
         return ['%s%s' % (u, extension) for u in utterances]
 
     def play(self, utterance, start=0, end=None):
@@ -389,16 +391,17 @@ class TimitCorpusReader(CorpusReader):
                 dsp.speed(16000)
                 dsp.write(self.audiodata(utterance, start, end))
                 dsp.close()
-            except IOError, e:
-                print >>sys.stderr, ("can't acquire the audio device; please "
-                                     "activate your audio device.")
-                print >>sys.stderr, "system error message:", str(e)
+            except IOError as e:
+                print(("can't acquire the audio device; please "
+                                     "activate your audio device."), file=sys.stderr)
+                print("system error message:", str(e), file=sys.stderr)
             return
         except ImportError:
             pass
 
         # Method 2: pygame
         try:
+            # FIXME: this won't work under python 3
             import pygame.mixer, StringIO
             pygame.mixer.init(16000)
             f = StringIO.StringIO(self.wav(utterance, start, end))
@@ -410,11 +413,12 @@ class TimitCorpusReader(CorpusReader):
             pass
 
         # Method 3: complain. :)
-        print >>sys.stderr, ("you must install pygame or ossaudiodev "
-                             "for audio playback.")
+        print(("you must install pygame or ossaudiodev "
+                             "for audio playback."), file=sys.stderr)
 
 
-class SpeakerInfo:
+@compat.python_2_unicode_compatible
+class SpeakerInfo(object):
     def __init__(self, id, sex, dr, use, recdate, birthdate,
                  ht, race, edu, comments=None):
         self.id = id
@@ -433,6 +437,7 @@ class SpeakerInfo:
         args = ['%s=%r' % (attr, getattr(self, attr))
                 for attr in attribs.split()]
         return 'SpeakerInfo(%s)' % (', '.join(args))
+
 
 def read_timit_block(stream):
     """

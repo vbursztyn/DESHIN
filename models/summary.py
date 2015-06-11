@@ -26,7 +26,7 @@ class Summary():
 
 	def parseSentences(self):
 		sentencesTokenizer = nltk.data.load('tokenizers/punkt/portuguese.pickle')
-		self.sentences = sentencesTokenizer.tokenize(self.content)
+		self.sentences = sentencesTokenizer.tokenize(self.content.decode("utf-8"))
 
 
 	def getRaw(self):
