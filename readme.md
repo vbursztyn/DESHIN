@@ -1,5 +1,5 @@
 # DESHIN: Dynamic and Extractive Summarizer toward Human Interests on News #
-*Said "dishing" _("serving food or [slang] gossiping", Merriam-Webster)._
+*Said "dishing" - _Serving nutritious texts on smaller dishes._
 
 > Authors:
 >> Raul Sena, Victor Bursztyn and Ygor Canalli. - {raulsf,vbursztyn,canalli}@cos.ufrj.br
