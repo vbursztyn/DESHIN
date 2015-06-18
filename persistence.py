@@ -29,27 +29,34 @@ class MongoInterface():
 		self.db = self.client[ DB_CONFIG["db"] ]
 
 
+	def testSetup(self):
+		if not self.client or not self.db:
+			raise Exception("Database is not set - call setup()")
+	
+
 	def writeCollections(self, collections):
+		self.testSetup()
+
 		mongoCollection = self.db[ DB_NAMESPACE_COLLECTIONS ]
 		mongoCollection.save(collections)
 
 
 	def writeSubject(self, subject):
+		self.testSetup()
+		
 		mongoCollection = self.db[ DB_NAMESPACE_SUBJECTS ]
 		mongoCollection.save(subject)
 
 
 	def getCollections(self):
-		if not self.client or not self.db:
-			raise Exception("Database is not set - call setup()")
+		self.testSetup()
 
 		mongoCollection = self.db[ DB_NAMESPACE_COLLECTIONS ]
 		return mongoCollection.find({"_id" : "collections"})
 
 
 	def getSubject(self, subjectId):
-		if not self.client or not self.db:
-			raise Exception("Database is not set - call setup()")
+		self.testSetup()
 		
 		mongoCollection = self.db[ DB_NAMESPACE_SUBJECTS ]
 		return mongoCollection.find({"_id" : subjectId})

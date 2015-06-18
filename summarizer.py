@@ -23,8 +23,6 @@ for collectionId, subjectsIds in collections[0].iteritems():
 		allSubjects[subjectId] = subject
 		print "Successfully read subject: " + subjectId
 
-mongoInterface.close()
-
 
 # Aggregator gathers features, its weights and processes summarization logics one subject per time
 # aggregator = Aggregator()
@@ -37,21 +35,23 @@ mongoInterface.close()
 # configurator.setAggregator(aggregator)
 # configurator.setEvaluator(evaluator)
 
-for collectionId, subjectsIds in collections[0].iteritems():
-	if collectionId == "_id":
-		continue
+# for collectionId, subjectsIds in collections[0].iteritems():
+# 	if collectionId == "_id":
+# 		continue
 
-	print "\n############################"
-	print "# Processing collection: " + collectionId
-	print "############################"
+# 	print "\n############################"
+# 	print "# Processing collection: " + collectionId
+# 	print "############################"
 
-	subjects = dict()
-	for subjectId in subjectsIds:
-		subjects[subjectId] = allSubjects[subjectId]
+# 	subjects = dict()
+# 	for subjectId in subjectsIds:
+# 		subjects[subjectId] = allSubjects[subjectId]
 
-	configurator.setCollection(collectionId)
-	configurator.setSubjects(subjects)
-	configurator.run()
+# 	configurator.setCollection(collectionId)
+# 	configurator.setSubjects(subjects)
+# 	configurator.run()
 
-	configurator.printResults() # Optimal configuration and actual evaluation metrics
+# 	configurator.printResults() # Optimal configuration and actual evaluation metrics
 
+
+mongoInterface.close()
