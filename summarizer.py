@@ -1,6 +1,9 @@
 import sys, os
 sys.path.append(os.getcwd())
 
+from aggregator.aggregator import Aggregator
+
+from configurator.configurator import Configurator
 
 from persistence import mongoInterface
 
@@ -25,31 +28,31 @@ for collectionId, subjectsIds in collections[0].iteritems():
 
 
 # Aggregator gathers features, its weights and processes summarization logics one subject per time
-# aggregator = Aggregator()
-# aggregator.loadFeatures(FEATURES_CONFIG)
+aggregator = Aggregator()
+aggregator.loadFeatures()
 # Evaluator formalizes the criteria by which we look at the results
 # evaluator = Evaluator()
 # evaluator.loadMetrics(METRICS_CONFIG)
 # Configurator gathers Collection-wise results and, until it converges, adjusts weights for a new iteration
-# configurator = Configurator()
-# configurator.setAggregator(aggregator)
+configurator = Configurator()
+configurator.setAggregator(aggregator)
 # configurator.setEvaluator(evaluator)
 
-# for collectionId, subjectsIds in collections[0].iteritems():
-# 	if collectionId == "_id":
-# 		continue
+for collectionId, subjectsIds in collections[0].iteritems():
+	if collectionId == "_id":
+		continue
 
-# 	print "\n############################"
-# 	print "# Processing collection: " + collectionId
-# 	print "############################"
+	print "\n############################"
+	print "# Processing collection: " + collectionId
+	print "############################"
 
-# 	subjects = dict()
-# 	for subjectId in subjectsIds:
-# 		subjects[subjectId] = allSubjects[subjectId]
+	subjects = dict()
+	for subjectId in subjectsIds:
+		subjects[subjectId] = allSubjects[subjectId]
 
-# 	configurator.setCollection(collectionId)
-# 	configurator.setSubjects(subjects)
-# 	configurator.run()
+	configurator.setCollection(collectionId)
+	configurator.setSubjects(subjects)
+	configurator.run()
 
 # 	configurator.printResults() # Optimal configuration and actual evaluation metrics
 
