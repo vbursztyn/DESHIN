@@ -3,6 +3,7 @@ class Configurator():
 	
 	def __init__(self):
 		self.aggregator = None
+		self.evaluator = None
 
 		self.collectionId = None
 		self.subjects = None

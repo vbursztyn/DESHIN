@@ -32,7 +32,6 @@ aggregator = Aggregator()
 aggregator.loadFeatures()
 # Evaluator formalizes the criteria by which we look at the results
 # evaluator = Evaluator()
-# evaluator.loadMetrics(METRICS_CONFIG)
 # Configurator gathers Collection-wise results and, until it converges, adjusts weights for a new iteration
 configurator = Configurator()
 configurator.setAggregator(aggregator)

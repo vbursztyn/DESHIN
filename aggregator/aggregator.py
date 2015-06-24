@@ -54,5 +54,5 @@ class Aggregator():
 			raise Exception("Aggregator misscalled - set it first")
 		
 		self.runForEachArticle() # Map/Reduce analogy: like "Map", as it creates Article-Feature pairs.
-		self.runKnapsack() # " Map/Reduce analogy: like "Reduce", where we actually aggregate results for the Subject.
+		self.runKnapsack() # Map/Reduce analogy: like "Reduce", where we actually aggregate results for the Subject.
 
