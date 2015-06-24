@@ -49,7 +49,6 @@ for collectionId, subjectsIds in collections[0].iteritems():
 	subjects = dict()
 	for subjectId in subjectsIds:
 		subjects[subjectId] = allSubjects[subjectId]
-
 	configurator.setCollection(collectionId)
 	configurator.setSubjects(subjects)
 	configurator.run()

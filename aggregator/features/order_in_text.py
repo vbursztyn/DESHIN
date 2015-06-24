@@ -5,7 +5,19 @@
 # So, currently, all features must have equal and fixed prototypes (TO-DO: improve Aggregator-Feature architecture,
 # considering different argument needs).
 
+
+from math import fabs
+
+
 def orderInText(article, titles):
-	return "List of sentences after orderInText - " + article[0][:10] + "(...)"
+	weightedSentences = list()
+	numberOfSentences = len(article)
+	middle = int(numberOfSentences / 2)
+	for i, sentence in enumerate(article):
+		score = fabs(i - middle) * 0.1
+		weightedSentence = { "content" : sentence, "score" : score }
+		weightedSentences.append(weightedSentence)
+	orderedSentences = sorted(weightedSentences, key=lambda k: k["score"], reverse=True)
+	return orderedSentences
 
 

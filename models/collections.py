@@ -16,10 +16,9 @@ import copy
 class Collections(MongoWritable):
 
 	
-	collections = dict()
-
-	
 	def __init__(self, collectionsPath=COLLECTIONS_PATH):
+		self.collections = dict()
+		
 		with open(collectionsPath, "r") as collectionsFile:
 			for line in collectionsFile:
 				tokens = line.split("\t")

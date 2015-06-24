@@ -20,8 +20,9 @@ class MongoWritable():
 class MongoInterface():
 
 
-	client = None
-	db = None
+	def __init__(self):
+		self.client = None
+		self.db = None
 
 
 	def setup(self, CONFIG=DB_CONFIG):

@@ -9,13 +9,14 @@ DEFAULT_FEATURES = { "base_feature" : similarityToTitle,
 class Aggregator():
 
 
-	features = None
-	articlesResults = None
-	subjectResult = None
+	def __init__(self):
+		self.features = None
+		self.articlesResults = None
+		self.subjectResult = None
 
-	summary = None
-	titles = None
-	articles = None
+		self.summary = None
+		self.titles = None
+		self.articles = None
 
 
 	def loadFeatures(self, features=DEFAULT_FEATURES):
@@ -27,7 +28,7 @@ class Aggregator():
 		if not any(subject[key] for key in keys):
 			raise KeyError("Malformed Subject object - missing one or more keys")
 		self.summary = subject["summary_sentences"]
-		self.titles = subject["articles_titles"]
+		self.titles = dict( filter(lambda item: item[1] is not None, subject["articles_titles"].items()) )
 		self.articles = subject["articles_sentences"]
 		self.articlesResults = dict()
 	
@@ -46,7 +47,6 @@ class Aggregator():
 
 	def runKnapsack(self):
 		print "TO-DO: Consolidate all scored sentences using Knapsack:"
-		print self.articlesResults
 
 
 	def run(self):
@@ -54,4 +54,5 @@ class Aggregator():
 			raise Exception("Aggregator misscalled - set it first")
 		
 		self.runForEachArticle() # Map/Reduce analogy: like "Map", as it creates Article-Feature pairs.
-		self.runKnapsack() # " MapReduce analogy: like "Reduce", where we actually aggregate results for the Subject.
+		self.runKnapsack() # " Map/Reduce analogy: like "Reduce", where we actually aggregate results for the Subject.
+

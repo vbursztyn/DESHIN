@@ -4,14 +4,13 @@ import nltk
 class Article():
 
 
-	articleId = None
-
-	title = None
-	content = None
-	sentences = None
-
-
 	def __init__(self, articleId, articlePath, articleTitle=None):
+		self.articleId = None
+
+		self.title = None
+		self.content = None
+		self.sentences = None
+
 		try:
 			if articleTitle:
 				with open(articleTitle, "r") as titleFile:

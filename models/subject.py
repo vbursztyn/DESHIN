@@ -9,8 +9,6 @@ from models.article import Article
 
 import glob
 
-# import copy
-
 
 # USAGE:
 # subject = Subject("C12_Mundo_EnchenteCoreia")
@@ -26,11 +24,12 @@ import glob
 class Subject(MongoWritable):
 
 
-	subjectId = None
+	def __init__(self, subjectId):
+		self.subjectId = subjectId
 
-	articles = dict()
-	titlesPaths = dict()
-	summary = None
+		self.articles = dict()
+		self.titlesPaths = dict()
+		self.summary = None
 
 
 	def fetchArticles(self, subjectId):
@@ -53,10 +52,6 @@ class Subject(MongoWritable):
 			if SUMMARY_SUFFIX in path:
 				return path
 		return None
-
-
-	def __init__(self, subjectId):
-		self.subjectId = subjectId
 
 
 	def fetch(self):
@@ -98,6 +93,7 @@ class Subject(MongoWritable):
 		saveObj["articles_titles"] = dict()
 		saveObj["articles_raw"] = dict()
 		saveObj["articles_sentences"] = dict()
+		print len(self.articles)
 		for articleId in self.articles:
 			saveObj["articles_titles"][articleId] = self.articles[articleId].getTitle()
 			saveObj["articles_raw"][articleId] = self.articles[articleId].getRaw()

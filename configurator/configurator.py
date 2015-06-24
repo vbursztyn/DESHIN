@@ -1,10 +1,11 @@
 class Configurator():
 
 	
-	aggregator = None
+	def __init__(self):
+		self.aggregator = None
 
-	collectionId = None
-	subjects = None
+		self.collectionId = None
+		self.subjects = None
 
 
 	def setAggregator(self, aggregator):
