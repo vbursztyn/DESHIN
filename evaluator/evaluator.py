@@ -9,21 +9,19 @@ class Evaluator():
 	def setTest(self, summary, idealSummary):
 		self.summary = summary
 		self.idealSummary = idealSummary
-
-
-	def precision(self):
-		return
-
-
-	def recall(self):
-		return
-
-
-	def F1(self):
-		return
 	
 
 	def run(self):
 		# Combinates precision, recall or whatever other evaluation metric, into one final test result.
 		# At a first glance, F1 offers a fair combination.
-		return
+		if not self.summary or not self.idealSummary:
+			raise Exception("Evaluator misscalled - set it first")
+		
+		cooccurrences = 0
+		for sentence in self.summary:
+			if sentence in self.idealSummary:
+				cooccurrences = cooccurrences + 1
+
+		precision = cooccurrences / float( len(self.summary) )
+		print "Precision is: " + str(precision)
+		return precision

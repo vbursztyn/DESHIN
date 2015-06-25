@@ -94,7 +94,7 @@ class Aggregator():
 
 
 	def runKnapsack(self):
-		print "TO-DO: Consolidate all scored sentences using Knapsack:"
+		# (TO-DO: Consolidate all scored sentences using Knapsack.)
 		# While knapsack is not yet implemented, a (really) dummy selection algorithm allows us
 		# to move further onto the Evaluation class (TO-DO: actually implement Knapsack + selection logics).
 		sackSize = len(self.summary)
@@ -109,6 +109,11 @@ class Aggregator():
 			self.subjectResult.append(result[i]["content"])
 
 
+	def recoverReadingOrder(self):
+		# (TO-DO: Sort Knapsack's result by original reading order.)
+		return
+
+
 	def run(self):
 		if not self.features or not self.summary:
 			raise Exception("Aggregator misscalled - set it first")
@@ -117,6 +122,7 @@ class Aggregator():
 		self.applyThreshold()
 		self.applyFeaturesWeights()
 		self.runKnapsack() # Map/Reduce analogy: like "Reduce", where we actually aggregate results for the Subject.
+		self.recoverReadingOrder()
 
 
 	def getResultingSummary(self):

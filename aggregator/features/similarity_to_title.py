@@ -72,8 +72,8 @@ def similarityToTitle(article, titles):
 
 	for sentence in article:
 		score = 0
-		sentence = removePunctuation(sentence)
-		sentenceWords = removeStopwords(sentence)
+		formattedSentence = removePunctuation(sentence)
+		sentenceWords = removeStopwords(formattedSentence)
 		sentenceWords = applyStemmer(sentenceWords)
 
 		for title in titles:

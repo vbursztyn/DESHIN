@@ -32,6 +32,8 @@ class Configurator():
 
 		self.aggregator.setWeights() # (TO-DO: actually search for optimal values in n-weights space.)
 
+		evaluations = list()
+
 		for subject in self.subjects:
 			self.aggregator.setSubject(self.subjects[subject])
 			self.aggregator.run()
@@ -39,5 +41,11 @@ class Configurator():
 			idealSummary = self.aggregator.getIdealSummary()
 			print "\nResulting summary:\n" + str(resultingSummary) + "\n"
 			print "\nIdeal summary:\n" + str(idealSummary) + "\n"
-			# self.evaluator.setTest(resultingSummary, idealSummary)
-			# self.evaluator.run()
+			
+			self.evaluator.setTest(resultingSummary, idealSummary)
+			evaluations.append( self.evaluator.run() )
+		
+		print "\n############################"
+		print "# " + self.collectionId + "'s mean evaluation: " + str( sum(evaluations) / float(len(evaluations)) )
+		print "############################\n"
+

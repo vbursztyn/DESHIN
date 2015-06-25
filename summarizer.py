@@ -3,6 +3,8 @@ sys.path.append(os.getcwd())
 
 from aggregator.aggregator import Aggregator
 
+from evaluator.evaluator import Evaluator
+
 from configurator.configurator import Configurator
 
 from persistence import mongoInterface
@@ -31,11 +33,11 @@ for collectionId, subjectsIds in collections[0].iteritems():
 aggregator = Aggregator()
 aggregator.loadFeatures()
 # Evaluator formalizes the criteria by which we look at the results
-# evaluator = Evaluator()
+evaluator = Evaluator()
 # Configurator gathers Collection-wise results and, until it converges, adjusts weights for a new iteration
 configurator = Configurator()
 configurator.setAggregator(aggregator)
-# configurator.setEvaluator(evaluator)
+configurator.setEvaluator(evaluator)
 
 for collectionId, subjectsIds in collections[0].iteritems():
 	if collectionId == "_id":
