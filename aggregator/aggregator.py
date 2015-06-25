@@ -118,3 +118,15 @@ class Aggregator():
 		self.applyFeaturesWeights()
 		self.runKnapsack() # Map/Reduce analogy: like "Reduce", where we actually aggregate results for the Subject.
 
+
+	def getResultingSummary(self):
+		if not self.subjectResult or not len(self.subjectResult):
+			raise Exception("Nonexistent or null result - be sure Aggregator was properly called")
+		return self.subjectResult
+
+
+	def getIdealSummary(self):
+		if not self.summary:
+			raise Exception("Nonexistent summary - be sure subject was properly set")
+		return self.summary
+

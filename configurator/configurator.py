@@ -13,6 +13,10 @@ class Configurator():
 		self.aggregator = aggregator
 
 
+	def setEvaluator(self, evaluator):
+		self.evaluator = evaluator
+
+
 	def setCollection(self, collectionId):
 		self.collectionId = collectionId
 
@@ -31,3 +35,9 @@ class Configurator():
 		for subject in self.subjects:
 			self.aggregator.setSubject(self.subjects[subject])
 			self.aggregator.run()
+			resultingSummary = self.aggregator.getResultingSummary()
+			idealSummary = self.aggregator.getIdealSummary()
+			print "\nResulting summary:\n" + str(resultingSummary) + "\n"
+			print "\nIdeal summary:\n" + str(idealSummary) + "\n"
+			# self.evaluator.setTest(resultingSummary, idealSummary)
+			# self.evaluator.run()
