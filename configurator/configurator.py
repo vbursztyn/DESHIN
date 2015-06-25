@@ -26,6 +26,8 @@ class Configurator():
 		print "# Running Configurator for: " + self.collectionId
 		print "############################"
 
+		self.aggregator.setWeights() # (TO-DO: actually search for optimal values in n-weights space.)
+
 		for subject in self.subjects:
 			self.aggregator.setSubject(self.subjects[subject])
 			self.aggregator.run()

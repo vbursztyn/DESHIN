@@ -4,6 +4,9 @@
 > Authors:
 >> Raul Sena, Victor Bursztyn and Ygor Canalli. - {raulsf,vbursztyn,canalli}@cos.ufrj.br
 
+> Corpus credits:
+>> CSTNews (by Aleixo, Pardo et al.) - http://www.icmc.usp.br/~taspardo/sucinto/index.html
+
 #1. Requirements:
 * MongoDB
 * Virtualenv - After installing it:
