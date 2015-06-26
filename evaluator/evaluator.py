@@ -12,7 +12,7 @@ class Evaluator():
 	
 
 	def run(self):
-		# Combinates precision, recall or whatever other evaluation metric, into one final test result.
+		# Combinates precision, recall or whatever other evaluation measure, into one final test result.
 		# At a first glance, F1 offers a fair combination.
 		if not self.summary or not self.idealSummary:
 			raise Exception("Evaluator misscalled - set it first")

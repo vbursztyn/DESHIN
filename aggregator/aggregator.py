@@ -1,7 +1,14 @@
 from globals import FEATURES_MIN_THRESHOLD
 
-from features.similarity_to_title import similarityToTitle
+from features.less_frequent_actors import lessFrequentActors
+
+from features.more_frequent_actors import moreFrequentActors
+
 from features.order_in_text import orderInText
+
+from features.similarity_to_title import similarityToTitle
+
+from features.verbs_and_nouns import verbsAndNouns
 
 
 DEFAULT_FEATURES = { "base_feature" : similarityToTitle,
