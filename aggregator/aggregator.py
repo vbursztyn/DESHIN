@@ -117,8 +117,22 @@ class Aggregator():
 
 
 	def recoverReadingOrder(self):
-		# (TO-DO: Sort Knapsack's result by original reading order.)
-		return
+		reorderedSentences = list()
+
+		for sentence in self.subjectResult:
+			level = -1
+			for article in self.articles:
+				if sentence in self.articles[article]:
+					level = self.articles[article].index(sentence)
+					break
+			if level == -1:
+				raise Exception("Broken Aggregator.articles - unable to locate sentence")
+			reorderedSentence = { "content" : sentence, "level" : level }
+			reorderedSentences.append(reorderedSentence)
+		
+		reorderedSentences = sorted(reorderedSentences, key=lambda k: k["level"])
+
+		self.subjectResult = [ sentence["content"] for sentence in reorderedSentences ]
 
 
 	def run(self):
