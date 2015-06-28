@@ -14,8 +14,10 @@
   * . venv/bin/activate
    * pip install -r requirements.txt
 
-P.S: If experience the following error: "ImportError: No module named pymongo" you can try these commands: 
+P.S: If you experienced the following error: "ImportError: No module named pymongo" you can try these commands:
+
 ```$ easy_install -U setuptools
+
 $ python -m easy_install pymongo```
 
 #2. Usage:
