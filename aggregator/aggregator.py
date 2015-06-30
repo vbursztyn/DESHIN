@@ -6,7 +6,7 @@ from features.more_frequent_actors import moreFrequentActors
 
 from features.order_in_text import orderInText
 
-from features.similarity_to_title import similarityToTitle
+from features.similarity_to_title import similarityToTitle, removePunctuation, removeStopwords
 
 from features.verbs_and_nouns import verbsAndNouns
 
@@ -119,19 +119,29 @@ class Aggregator():
 
 		weightedScoreAux = []
 		for content, score in self.weightedScores.iteritems():
-			weightedScoreAux.append( {"content": content, "score": score, "length": len(content)} )
+			weightedScoreAux.append( {"content": content, "score": score, "length": self.countWords(content)} )
 
 		self.weightedScores = sorted(weightedScoreAux, key=lambda k: k["score"], reverse=True)
 
+
+	def countWords(self, content):
+		formattedContent = removePunctuation(content)
+		contentWords = removeStopwords(formattedContent)
+		return len(contentWords)
 
 	def runKnapsack(self):
 		# Create the solver.
 		solver = pywrapknapsack_solver.KnapsackSolver(pywrapknapsack_solver.KnapsackSolver.KNAPSACK_MULTIDIMENSION_BRANCH_AND_BOUND_SOLVER, 'test')
 
+		idealSummarySize = 0
+
+		for sentence in self.summary:
+			idealSummarySize += self.countWords(sentence)
+
 		# Transforme real scores into integer profits
 		profits = [ long(x["score"] * pow(10,6)) for x in self.weightedScores]
 		weights = [[x["length"] for x in self.weightedScores]]
-		capacities = [1000]
+		capacities = [idealSummarySize]
 
 		solver.Init(profits, weights, capacities)
 		solver.Solve()
