@@ -10,6 +10,14 @@ from features.similarity_to_title import similarityToTitle
 
 from features.verbs_and_nouns import verbsAndNouns
 
+from google.apputils import app
+
+import gflags
+
+from ortools.algorithms import pywrapknapsack_solver
+
+FLAGS = gflags.FLAGS
+
 
 DEFAULT_FEATURES = { "base_feature" : similarityToTitle,
 					"tuning_features" : [ orderInText ] } # To be moved to elsewhere.
@@ -51,6 +59,7 @@ class Aggregator():
 		self.articles = subject["articles_sentences"]
 		self.articlesResults = dict()
 		self.subjectResult = list()
+		self.weightedScores = dict()
 	
 
 	# For each Article about this Subject, computes base feature,
@@ -88,32 +97,48 @@ class Aggregator():
 		if not any(self.articlesResults[key] for key in keys):
 			raise KeyError("Weights application misscalled - run features first")
 
+
 		weight = DEFAULT_WEIGHTS["base_feature"]
 		for article in self.articlesResults["base_feature"]:
 			for i, sentence in enumerate(self.articlesResults["base_feature"][article]):
 				sentence["score"] = sentence["score"] * weight
+				if sentence["content"] in self.weightedScores:
+					self.weightedScores[sentence["content"]] += sentence["score"]
+				else:
+					self.weightedScores[sentence["content"]] = sentence["score"]
 
 		for article in self.articlesResults["tuning_features"]:
 			for feature in self.articlesResults["tuning_features"][article]:
 				weight = DEFAULT_WEIGHTS["tuning_features"][feature]
 				for i, sentence in enumerate(self.articlesResults["tuning_features"][article][feature]):
 					sentence["score"] = sentence["score"] * weight
+					if sentence["content"] in self.weightedScores:
+						self.weightedScores[sentence["content"]] += sentence["score"]
+					else:
+						self.weightedScores[sentence["content"]] = sentence["score"]
+
+		weightedScoreAux = []
+		for content, score in self.weightedScores.iteritems():
+			weightedScoreAux.append( {"content": content, "score": score, "length": len(content)} )
+
+		self.weightedScores = sorted(weightedScoreAux, key=lambda k: k["score"], reverse=True)
 
 
 	def runKnapsack(self):
-		# (TO-DO: Consolidate all scored sentences using Knapsack.)
-		# While knapsack is not yet implemented, a (really) dummy selection algorithm allows us
-		# to move further onto the Evaluation class (TO-DO: actually implement Knapsack + selection logics).
-		sackSize = len(self.summary)
-		result = list()
-		level = 0
-		while len(result) < sackSize:
-			for article in self.articlesResults["base_feature"]:
-				result.append(self.articlesResults["base_feature"][article][level])
-			level = level + 1
+		# Create the solver.
+		solver = pywrapknapsack_solver.KnapsackSolver(pywrapknapsack_solver.KnapsackSolver.KNAPSACK_MULTIDIMENSION_BRANCH_AND_BOUND_SOLVER, 'test')
 
-		for i in range(0, sackSize):
-			self.subjectResult.append(result[i]["content"])
+		# Transforme real scores into integer profits
+		profits = [ long(x["score"] * pow(10,6)) for x in self.weightedScores]
+		weights = [[x["length"] for x in self.weightedScores]]
+		capacities = [1000]
+
+		solver.Init(profits, weights, capacities)
+		solver.Solve()
+
+		for i in xrange(len(profits)):
+			if solver.BestSolutionContains(i):
+				self.subjectResult.append(self.weightedScores[i]["content"])
 
 
 	def recoverReadingOrder(self):
