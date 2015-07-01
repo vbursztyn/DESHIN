@@ -19,22 +19,38 @@ class Evaluator():
 
 		precision = cooccurrences / float( len(self.summary) )
 
+		print precision
 		return precision
+
+
+	def calculateRecall(self):
+		cooccurrences = 0
+		for sentence in self.summary:
+			if sentence in self.idealSummary:
+				cooccurrences = cooccurrences + 1
+
+		recall = cooccurrences / float( len(self.idealSummary) )
+
+		print recall
+		return recall
 
 
 	def run(self):
 		# Picked and calculated F1, mostly based on:
 		# F1: http://www.isi.edu/natural-language/projects/webclopedia/pubs/02hlt-neats.pdf
 		# Precision and Recall: http://www.aclweb.org/anthology/P03-1048
+		# Definition: https://en.wikipedia.org/wiki/Precision_and_recall
 
 		if not self.summary or not self.idealSummary:
 			raise Exception("Evaluator misscalled - set it first")
 		
 		precision = self.calculatePrecision()
-		# Sizes (in sentences) are equal, thus precision is numerically equal to recall.
-		# And if: F1 = (2 * precision * recall) / (precision + recall)
-		# Then F1 is also numerically equal to precision.
+		recall = self.calculateRecall()
+		if precision or recall:
+			F1 = (2 * precision * recall) / (precision + recall)
+		else:
+			F1 = 0.0
 
-		print "F1 is: " + str(precision)
-		return precision
+		print "F1 is: " + str(F1)
+		return F1
 

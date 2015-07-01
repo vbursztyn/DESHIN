@@ -6,7 +6,7 @@ from features.more_frequent_actors import moreFrequentActors
 
 from features.order_in_text import orderInText
 
-from features.similarity_to_title import similarityToTitle, removePunctuation, removeStopwords
+from features.similarity_to_title import similarityToTitle
 
 from features.verbs_and_nouns import verbsAndNouns
 
@@ -119,15 +119,10 @@ class Aggregator():
 
 		weightedScoreAux = []
 		for content, score in self.weightedScores.iteritems():
-			weightedScoreAux.append( {"content": content, "score": score, "length": self.countWords(content)} )
+			weightedScoreAux.append( {"content": content, "score": score, "length": len(content)} )
 
 		self.weightedScores = sorted(weightedScoreAux, key=lambda k: k["score"], reverse=True)
 
-
-	def countWords(self, content):
-		formattedContent = removePunctuation(content)
-		contentWords = removeStopwords(formattedContent)
-		return len(contentWords)
 
 	def runKnapsack(self):
 		# Create the solver.
@@ -136,7 +131,7 @@ class Aggregator():
 		idealSummarySize = 0
 
 		for sentence in self.summary:
-			idealSummarySize += self.countWords(sentence)
+			idealSummarySize += len(sentence)
 
 		# Transforme real scores into integer profits
 		profits = [ long(x["score"] * pow(10,6)) for x in self.weightedScores]

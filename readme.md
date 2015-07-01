@@ -8,21 +8,21 @@
 >> CSTNews (by Aleixo, Pardo et al.) - http://www.icmc.usp.br/~taspardo/sucinto/index.html
 
 #1. Requirements:
+* Python 2.7 (restriction due to OR-tools dependency)
 * MongoDB
-* Virtualenv - After installing it:
- * virtualenv venv
-  * . venv/bin/activate
-   * pip install -r requirements.txt
+* Virtualenv (includes suitable versions for Python and pip):
+ * Create your virtualenv
+  * pip install -r requirements.txt
+* OR-tools
+ * In case pip fails at OR-tools, please follow the instructions to install it manually [ https://developers.google.com/optimization/installing ]
+  * In the worst case, download and easy_install its egg directly [ https://pypi.python.org/simple/ortools/ ]
 
-P.S: If you experienced the following error: "ImportError: No module named pymongo" you can try these commands:
-
-``` $ easy_install -U setuptools
-$ python -m easy_install pymongo ```
+Ensure you have all dependencies correctly installed before attempting to run DESHIN.
 
 #2. Usage:
 * Pre-processing:
- * . venv/bin/activate
+ * Activate your virtualenv
   * bash run_etl.sh
 * Batch summarizer:
- * . venv/bin/activate
+ * Activate your virtualenv
   * bash run_experiment.sh
