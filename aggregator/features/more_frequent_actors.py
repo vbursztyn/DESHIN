@@ -44,6 +44,7 @@ def moreFrequentActors(article, titles):
 					actors[ pair[0] ] = 1
 
 	mostFrequent = max(actors.values())
+	maxScore = 0.0
 
 	for sentence in article:
 		score = 0.0
@@ -54,7 +55,11 @@ def moreFrequentActors(article, titles):
 		
 		weightedSentence = { "content" : sentence, "score" : score }
 		weightedSentences.append(weightedSentence)
+		if score > maxScore:
+			maxScore = score
 
 	orderedSentences = sorted(weightedSentences, key=lambda k: k["score"], reverse=True)
+	orderedSentences = [ { "content" : sentence["content"], "score" : (sentence["score"] / maxScore) } \
+	 for sentence in orderedSentences ]
 	return orderedSentences
 
