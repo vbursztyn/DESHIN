@@ -20,11 +20,11 @@ FLAGS = gflags.FLAGS
 
 
 DEFAULT_FEATURES = { "base_feature" : similarityToTitle,
-					"tuning_features" : [ orderInText ] } # To be moved to elsewhere.
+					"tuning_features" : [ orderInText, moreFrequentActors ] } # To be moved to elsewhere.
 
 
 DEFAULT_WEIGHTS = { "base_feature" : 1.0,
-					"tuning_features" : [ 0.0 ] } # To be merged to DEFAULT_FEATURES (as dictionaries).
+					"tuning_features" : [ 0.2, 0.5 ] } # To be merged to DEFAULT_FEATURES (as dictionaries).
 
 
 class Aggregator():

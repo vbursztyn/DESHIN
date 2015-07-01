@@ -5,6 +5,8 @@
 
 type1	C12_Mundo_EnchenteCoreia
 type1	C32_Mundo_FalhaNuclear
+type1	C23_Mundo_EnchenteReinoUnido
+type1	C18_Mundo_AtaqueVirginia
 
 type2	C20_Politica_CPMF
 type2	C2_Politica_ReeleicaoLula

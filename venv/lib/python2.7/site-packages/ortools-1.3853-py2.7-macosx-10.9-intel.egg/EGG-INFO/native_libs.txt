@@ -1,0 +1,6 @@
+dummy_ortools_dependency.so
+ortools/libortools.dylib
+ortools/algorithms/_pywrapknapsack_solver.so
+ortools/constraint_solver/_pywrapcp.so
+ortools/graph/_pywrapgraph.so
+ortools/linear_solver/_pywraplp.so

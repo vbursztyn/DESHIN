@@ -1,0 +1,2 @@
+google-apputils >= 0.4
+protobuf >= 2.5.0

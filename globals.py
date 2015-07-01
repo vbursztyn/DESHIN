@@ -11,3 +11,5 @@ DB_NAMESPACE_SUBJECTS = "DESHINSubjects"
 DB_DEFAULT_COLLECTIONS_KEY = "collections"
 
 FEATURES_MIN_THRESHOLD = 0.1
+
+POS_TAGGER_PATH = "aggregator/pos_tagger/mac_morpho_pos_tagger.pickle"

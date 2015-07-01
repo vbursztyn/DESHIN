@@ -6,5 +6,55 @@
 # considering different argument needs).
 
 
+from globals import POS_TAGGER_PATH
+
+import pickle
+
+import nltk
+
+
+stopwords = nltk.corpus.stopwords.words("portuguese")
+
+
+def removeStopwords(text):
+	textWords = list()
+	for word in nltk.tokenize.word_tokenize(text):
+		textWords.append(word)
+
+	for stopword in stopwords:
+		textWords = filter(lambda w: w != stopword, textWords)
+
+	return textWords
+
+
 def moreFrequentActors(article, titles):
-	return
+	fPosTagger = open(POS_TAGGER_PATH)
+	tagger = pickle.load(fPosTagger)
+	actors = dict()
+
+	weightedSentences = list()
+
+	for sentence in article:
+		taggedWords = tagger.tag(removeStopwords(sentence))
+		for pair in taggedWords:
+			if pair[1] == "NPROP":
+				if pair[0] in actors:
+					actors[ pair[0] ] = actors[ pair[0] ] + 1
+				else:
+					actors[ pair[0] ] = 1
+
+	mostFrequent = max(actors.values())
+
+	for sentence in article:
+		score = 0.0
+		taggedWords = tagger.tag(removeStopwords(sentence))
+		for pair in taggedWords:
+			if pair[1] == "NPROP":
+				score = score + ( actors[ pair[0] ] / mostFrequent )
+		
+		weightedSentence = { "content" : sentence, "score" : score }
+		weightedSentences.append(weightedSentence)
+
+	orderedSentences = sorted(weightedSentences, key=lambda k: k["score"], reverse=True)
+	return orderedSentences
+

@@ -16,6 +16,11 @@
 * OR-tools
  * In case pip fails at OR-tools, please follow the instructions to install it manually [ https://developers.google.com/optimization/installing ]
   * In the worst case, download and easy_install its egg directly [ https://pypi.python.org/simple/ortools/ ]
+* NLTk Trainer on MacMorpho
+ * Activate your virtualenv
+  * At project's root:
+   * python -m nltk.downloader punkt mac_morpho stopwords
+    * python $VIRTUAL_ENV/src/nltk-trainer-master/train_tagger.py mac_morpho --filename aggregator/pos_tagger/mac_morpho_pos_tagger.pickle --no-eval
 
 Ensure you have all dependencies correctly installed before attempting to run DESHIN.
 
