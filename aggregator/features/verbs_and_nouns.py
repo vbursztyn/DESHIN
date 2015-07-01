@@ -6,5 +6,50 @@
 # considering different argument needs).
 
 
+from globals import POS_TAGGER_PATH
+
+import pickle
+
+import nltk
+
+
+stopwords = nltk.corpus.stopwords.words("portuguese")
+
+
+def removeStopwords(text):
+	textWords = list()
+	for word in nltk.tokenize.word_tokenize(text):
+		textWords.append(word)
+
+	for stopword in stopwords:
+		textWords = filter(lambda w: w != stopword, textWords)
+
+	return textWords
+
+
 def verbsAndNouns(article, titles):
-	return
+	fPosTagger = open(POS_TAGGER_PATH)
+	tagger = pickle.load(fPosTagger)
+	verbsOrNouns = [ "V", "N" ]
+
+	weightedSentences = list()
+
+	maxScore = 0.0
+
+	for sentence in article:
+		score = 0.0
+		taggedWords = tagger.tag(removeStopwords(sentence))
+		for pair in taggedWords:
+			if pair[1] in verbsOrNouns:
+				score = score + 1
+		
+		weightedSentence = { "content" : sentence, "score" : score }
+		weightedSentences.append(weightedSentence)
+		if score > maxScore:
+			maxScore = score
+
+	orderedSentences = sorted(weightedSentences, key=lambda k: k["score"], reverse=True)
+	orderedSentences = [ { "content" : sentence["content"], "score" : (sentence["score"] / maxScore) } \
+	 for sentence in orderedSentences ]
+	return orderedSentences
+

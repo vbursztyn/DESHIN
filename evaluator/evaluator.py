@@ -19,7 +19,6 @@ class Evaluator():
 
 		precision = cooccurrences / float( len(self.summary) )
 
-		print precision
 		return precision
 
 
@@ -31,7 +30,6 @@ class Evaluator():
 
 		recall = cooccurrences / float( len(self.idealSummary) )
 
-		print recall
 		return recall
 
 

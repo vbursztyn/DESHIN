@@ -11,7 +11,7 @@
 * Python 2.7 (restriction due to OR-tools dependency)
 * MongoDB
 * Virtualenv (includes suitable versions for Python and pip):
- * Create your virtualenv
+ * Create and activate your virtualenv
   * pip install -r requirements.txt
 * OR-tools
  * In case pip fails at OR-tools, please follow the instructions to install it manually [ https://developers.google.com/optimization/installing ]
