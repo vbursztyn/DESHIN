@@ -31,21 +31,22 @@ class Configurator():
 		self.results["all"] = []
 		self.results["best"] = dict()
 
+		'''
 		base_configurations = [1.0, 0.95]
 		tuning_configurations = []
 		tuning_configurations.append( ("orderInText", [0.0]) )
 		tuning_configurations.append( ("moreFrequentActors", [0.2]) )
 		tuning_configurations.append( ("lessFrequentActors", [0.2]) )
 		tuning_configurations.append( ("verbsAndNouns", [0.2, 0.3]) )
-
 		'''
+		
 		base_configurations = [1.0, 0.95, 0.9, 0.85, 0.8]
 		tuning_configurations = []
 		tuning_configurations.append( ("orderInText", [0.0, 0.1, 0.15, 0.2, 0.25, 0.3]) )
 		tuning_configurations.append( ("moreFrequentActors", [0.2, 0.3, 0.4, 0.4, 0.6, 0.7]) )
 		tuning_configurations.append( ("lessFrequentActors", [0.2, 0.3, 0.4, 0.4, 0.6, 0.7]) )
 		tuning_configurations.append( ("verbsAndNouns", [0.2, 0.3, 0.4, 0.4, 0.6, 0.7]) )
-		'''
+	
 
 		best_wheights = None
 		best_evaluation = 0
