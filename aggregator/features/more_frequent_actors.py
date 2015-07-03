@@ -6,7 +6,7 @@
 # considering different argument needs).
 
 
-from globals import POS_TAGGER_PATH
+from aggregator.pos_tagger.global_tagger import tagger
 
 import pickle
 
@@ -28,8 +28,6 @@ def removeStopwords(text):
 
 
 def moreFrequentActors(article, titles):
-	fPosTagger = open(POS_TAGGER_PATH)
-	tagger = pickle.load(fPosTagger)
 	actors = dict()
 
 	weightedSentences = list()

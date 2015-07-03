@@ -64,7 +64,7 @@ for collectionId, subjectsIds in collections[0].iteritems():
 	results[collectionId] = configurator.results
 
 # 	configurator.printResults() # Optimal configuration and actual evaluation metrics
-	with open(RESULTS_PATH, "w") as f:
-		json.dump(results, f)
+	with open(RESULTS_PATH, "w") as fResults:
+		json.dump(results, fResults, indent=4)
 
 mongoInterface.close()
