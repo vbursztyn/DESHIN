@@ -1,7 +1,7 @@
 import sys, os
 sys.path.append(os.getcwd())
 
-from globals import RESUTLS_PATH
+from globals import RESULTS_PATH
 
 from aggregator.aggregator import Aggregator
 
@@ -64,7 +64,7 @@ for collectionId, subjectsIds in collections[0].iteritems():
 	results[collectionId] = configurator.results
 
 # 	configurator.printResults() # Optimal configuration and actual evaluation metrics
-	with open(RESUTLS_PATH, "w") as f:
+	with open(RESULTS_PATH, "w") as f:
 		json.dump(results, f)
 
 mongoInterface.close()

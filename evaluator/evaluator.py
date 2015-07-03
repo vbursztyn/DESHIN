@@ -49,6 +49,6 @@ class Evaluator():
 		else:
 			F1 = 0.0
 
-		print "F1 is: " + str(F1)
+		#print "F1 is: " + str(F1)
 		return F1
 
