@@ -1,6 +1,8 @@
 import sys, os
 sys.path.append(os.getcwd())
 
+from globals import RESUTLS_PATH
+
 from aggregator.aggregator import Aggregator
 
 from evaluator.evaluator import Evaluator
@@ -8,6 +10,8 @@ from evaluator.evaluator import Evaluator
 from configurator.configurator import Configurator
 
 from persistence import mongoInterface
+
+import json
 
 
 mongoInterface.setup()
@@ -40,8 +44,10 @@ evaluator = Evaluator()
 configurator = Configurator()
 configurator.setAggregator(aggregator)
 configurator.setEvaluator(evaluator)
+results = dict()
 
 for collectionId, subjectsIds in collections[0].iteritems():
+
 	if collectionId == "_id":
 		continue
 
@@ -55,8 +61,10 @@ for collectionId, subjectsIds in collections[0].iteritems():
 	configurator.setCollection(collectionId)
 	configurator.setSubjects(subjects)
 	configurator.run()
+	results[collectionId] = configurator.results
 
 # 	configurator.printResults() # Optimal configuration and actual evaluation metrics
-
+	with open(RESUTLS_PATH, "w") as f:
+		json.dump(results, f)
 
 mongoInterface.close()
