@@ -99,7 +99,7 @@ class Aggregator():
 			raise KeyError("Weights application misscalled - run features first")
 
 
-		weight = DEFAULT_WEIGHTS["base_feature"]
+		weight = self.weights["base_feature"]
 		for article in self.articlesResults["base_feature"]:
 			for i, sentence in enumerate(self.articlesResults["base_feature"][article]):
 				sentence["score"] = sentence["score"] * weight
@@ -110,7 +110,7 @@ class Aggregator():
 
 		for article in self.articlesResults["tuning_features"]:
 			for feature in self.articlesResults["tuning_features"][article]:
-				weight = DEFAULT_WEIGHTS["tuning_features"][feature]
+				weight = self.weights["tuning_features"][feature]
 				for i, sentence in enumerate(self.articlesResults["tuning_features"][article][feature]):
 					sentence["score"] = sentence["score"] * weight
 					if sentence["content"] in self.weightedScores:

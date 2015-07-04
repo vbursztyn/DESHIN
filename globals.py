@@ -14,4 +14,4 @@ FEATURES_MIN_THRESHOLD = 0.1
 
 POS_TAGGER_PATH = "aggregator/pos_tagger/mac_morpho_pos_tagger.pickle"
 
-RESULTS_PATH = "results.json"
+RESULTS_PATH = "final_results.json"

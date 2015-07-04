@@ -1,0 +1,86 @@
+{
+    "type1": {
+        "all": [
+            {
+                "evaluation": 0.11044254658385094, 
+                "weights": {
+                    "tuning_features": [
+                        0.0, 
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "base_feature": 1.0
+                }
+            }
+        ], 
+        "best": {
+            "evaluation": 0.11044254658385094, 
+            "weights": {
+                "tuning_features": [
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "base_feature": 1.0
+            }
+        }
+    }, 
+    "type3": {
+        "all": [
+            {
+                "evaluation": 0.24848484848484845, 
+                "weights": {
+                    "tuning_features": [
+                        0.0, 
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "base_feature": 1.0
+                }
+            }
+        ], 
+        "best": {
+            "evaluation": 0.24848484848484845, 
+            "weights": {
+                "tuning_features": [
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "base_feature": 1.0
+            }
+        }
+    }, 
+    "type2": {
+        "all": [
+            {
+                "evaluation": 0.21407085561497324, 
+                "weights": {
+                    "tuning_features": [
+                        0.0, 
+                        0.0, 
+                        0.0, 
+                        0.0
+                    ], 
+                    "base_feature": 1.0
+                }
+            }
+        ], 
+        "best": {
+            "evaluation": 0.21407085561497324, 
+            "weights": {
+                "tuning_features": [
+                    0.0, 
+                    0.0, 
+                    0.0, 
+                    0.0
+                ], 
+                "base_feature": 1.0
+            }
+        }
+    }
+}
