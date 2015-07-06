@@ -25,9 +25,12 @@
 Ensure you have all dependencies correctly installed before attempting to run DESHIN.
 
 #2. Usage:
-* Pre-processing:
+* Pre-processing only:
  * Activate your virtualenv
   * bash run_etl.sh
-* Batch summarizer:
+* Batch summarizer only:
  * Activate your virtualenv
   * bash run_experiment.sh
+* Entire workflow:
+ * Activate your virtualenv
+  * bash run_all.sh

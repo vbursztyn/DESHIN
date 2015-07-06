@@ -44,7 +44,7 @@ class Configurator():
 		# tuningConfigurations.append( ("lessFrequentActors", [0.0]) )
 		# tuningConfigurations.append( ("verbsAndNouns", [0.0]) )
 			
-		baseConfigurations = [0.7]
+		baseConfigurations = [0.5, 0.7]
 		tuningConfigurations = []
 		tuningConfigurations.append( ("orderInText", [0.1, 0.3, 0.5, 0.7, 0.9]) )
 		tuningConfigurations.append( ("moreFrequentActors", [0.1, 0.3, 0.5, 0.7, 0.9]) )
