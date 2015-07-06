@@ -44,7 +44,7 @@ evaluator = Evaluator()
 configurator = Configurator()
 configurator.setAggregator(aggregator)
 configurator.setEvaluator(evaluator)
-results = dict()
+finalResults = dict()
 
 for collectionId, subjectsIds in collections[0].iteritems():
 
@@ -61,10 +61,13 @@ for collectionId, subjectsIds in collections[0].iteritems():
 	configurator.setCollection(collectionId)
 	configurator.setSubjects(subjects)
 	configurator.run()
-	results[collectionId] = configurator.results
 
-# 	configurator.printResults() # Optimal configuration and actual evaluation metrics
-	with open(RESULTS_PATH, "w") as fResults:
-		json.dump(results, fResults, indent=4)
+	finalResults[collectionId] = configurator.getResults()
 
 mongoInterface.close()
+
+
+with open(RESULTS_PATH, "w") as fResults:
+		json.dump(finalResults, fResults, indent=4)
+
+

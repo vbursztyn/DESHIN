@@ -2,7 +2,7 @@
     "type1": {
         "all": [
             {
-                "evaluation": 0.11044254658385094, 
+                "evaluation": 0.1552664324403455, 
                 "weights": {
                     "tuning_features": [
                         0.0, 
@@ -15,7 +15,7 @@
             }
         ], 
         "best": {
-            "evaluation": 0.11044254658385094, 
+            "evaluation": 0.1552664324403455, 
             "weights": {
                 "tuning_features": [
                     0.0, 
@@ -30,7 +30,7 @@
     "type3": {
         "all": [
             {
-                "evaluation": 0.24848484848484845, 
+                "evaluation": 0.25597319347319347, 
                 "weights": {
                     "tuning_features": [
                         0.0, 
@@ -43,7 +43,7 @@
             }
         ], 
         "best": {
-            "evaluation": 0.24848484848484845, 
+            "evaluation": 0.25597319347319347, 
             "weights": {
                 "tuning_features": [
                     0.0, 
@@ -58,7 +58,7 @@
     "type2": {
         "all": [
             {
-                "evaluation": 0.21407085561497324, 
+                "evaluation": 0.16047745679299388, 
                 "weights": {
                     "tuning_features": [
                         0.0, 
@@ -71,7 +71,7 @@
             }
         ], 
         "best": {
-            "evaluation": 0.21407085561497324, 
+            "evaluation": 0.16047745679299388, 
             "weights": {
                 "tuning_features": [
                     0.0, 

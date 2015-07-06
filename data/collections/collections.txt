@@ -7,13 +7,26 @@ type1	C12_Mundo_EnchenteCoreia
 type1	C32_Mundo_FalhaNuclear
 type1	C23_Mundo_EnchenteReinoUnido
 type1	C18_Mundo_AtaqueVirginia
+type1	C26_Mundo_FuracaoMexico
+type1	C14_Mundo_AcidenteTrens
+type1	C15_Mundo_ExplosaoMoscou
+type1	C13_Mundo_SriLanka
+type1	C1_Mundo_AviaoCongo
 
 type2	C20_Politica_CPMF
 type2	C2_Politica_ReeleicaoLula
 type2	C16_Politica_Sanguessugas
 type2	C11_Cotidiano_PCC
+type2	C6_Cotidiano_CanteiroObras
+type2	C17_Politica_EleicaoAlckmim
+type2	C30_Dinheiro_LucroItau - concordanciaRST
+type2	C9_Politica_Desvio
 
 type3	C27_Esportes_GoleadaEquador
 type3	C28_Esportes_HeptaVolei
 type3	C8_Esportes_LigaVolei
 type3	C24_Esportes_FabianaMue
+type3	C25_Esportes_CopaAmerica
+type3	C7_Ciencia_NovoPlaneta - concordanciaRST
+type3	C19_Esportes_Maradona - concordanciaCST
+type3	C31_Esportes_Jade - concordanciaCST
