@@ -3,10 +3,6 @@ sys.path.append(os.getcwd())
 
 from globals import RESULTS_PATH
 
-from aggregator.aggregator import Aggregator
-
-from evaluator.evaluator import Evaluator
-
 from configurator.configurator import Configurator
 
 from persistence import mongoInterface
@@ -32,18 +28,8 @@ for collectionId, subjectsIds in collections[0].iteritems():
 		allSubjects[subjectId] = subject
 		print "Successfully read subject: " + subjectId
 
-
-# Aggregator gathers features, its weights and processes summarization logics one Subject per time
-aggregator = Aggregator()
-aggregator.loadFeatures()
-
-# Evaluator formalizes the criteria by which we look at the results
-evaluator = Evaluator()
-
 # Configurator gathers Collection-wise results and, until it converges, adjusts weights for a new iteration
 configurator = Configurator()
-configurator.setAggregator(aggregator)
-configurator.setEvaluator(evaluator)
 finalResults = dict()
 
 for collectionId, subjectsIds in collections[0].iteritems():
