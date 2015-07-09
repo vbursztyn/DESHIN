@@ -64,22 +64,20 @@ class Configurator():
 		self.results["best"] = dict()
 
 		# Base feature only:
-		baseConfigurations = [1.0]
-		tuningConfigurations = []
-		tuningConfigurations.append( ("orderInText", [0.0, 0.1]) )
-		tuningConfigurations.append( ("moreFrequentActors", [0.0, 0.1]) )
-		tuningConfigurations.append( ("lessFrequentActors", [0.0, 0.1]) )
-		tuningConfigurations.append( ("verbsAndNouns", [0.0, 0.1]) )
-		
-		'''	
+		# baseConfigurations = [1.0]
+		# tuningConfigurations = []
+		# tuningConfigurations.append( ("orderInText", [0.0, 0.1]) )
+		# tuningConfigurations.append( ("moreFrequentActors", [0.0, 0.1]) )
+		# tuningConfigurations.append( ("lessFrequentActors", [0.0, 0.1]) )
+		# tuningConfigurations.append( ("verbsAndNouns", [0.0, 0.1]) )
+			
 		baseConfigurations = [0.5, 0.7]
 		tuningConfigurations = []
 		tuningConfigurations.append( ("orderInText", [0.1, 0.3, 0.5, 0.7, 0.9]) )
 		tuningConfigurations.append( ("moreFrequentActors", [0.1, 0.3, 0.5, 0.7, 0.9]) )
 		tuningConfigurations.append( ("lessFrequentActors", [0.1, 0.3, 0.5, 0.7, 0.9]))
 		tuningConfigurations.append( ("verbsAndNouns", [0.1, 0.3, 0.5, 0.7, 0.9]))
-		'''
-
+		
 		bestWeights = None
 		bestEvaluation = 0.0
 
